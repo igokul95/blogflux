@@ -1,0 +1,36 @@
+modules:
+  macro:
+    - key: blogflux-blog
+      resource: main
+      resolver:
+        function: resolver
+      title: blogflux
+      description: Inserts blog post
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: static/main-macro/dist
+    tunnel: 
+      port: 5173
+  - key: modal-content
+    path: static/modal/dist
+    tunnel: 
+      port: 5174
+permissions:
+  content:
+    scripts:
+      - unsafe-inline
+    styles:
+      - unsafe-inline
+  external:
+    frames:
+      - 'dummyapi.online'
+    fetch:
+      client:
+          - 'dummyapi.online'
+  scopes: 
+    - storage:app
+app:
+  id: ari:cloud:ecosystem::app/ac3f8058-193e-49a4-aa10-e33e5c5c0e31
